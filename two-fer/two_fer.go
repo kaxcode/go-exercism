@@ -1,10 +1,13 @@
 package twofer
 
+import "fmt"
+
 // ShareWith returns a string
 func ShareWith(name string) string {
+	s := "One for %s, one for me."
 	if len(name) != 0 {
-		return "One for " + name + ", one for me."
+		return fmt.Sprintf(s, name)
 	}
 
-	return "One for you, one for me."
+	return fmt.Sprintf(s, "you")
 }
