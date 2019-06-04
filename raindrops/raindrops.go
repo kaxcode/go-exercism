@@ -1,18 +1,18 @@
 package raindrops
 
 import (
-    "strconv"
+	"strconv"
 )
 
 // Convert numbers divisible by 3,5, or 7 into strings
 func Convert(num int) string {
-	if num%3 ==0 && num%5 ==0 && num%7 ==0 {
+	if num%3 == 0 && num%5 == 0 && num%7 == 0 {
 		return "PlingPlangPlong"
-	} else if num%3 ==0 && num%5 == 0 {
+	} else if num%3 == 0 && num%5 == 0 {
 		return "PlingPlang"
-	} else if num%3 ==0 && num%7 ==0 {
+	} else if num%3 == 0 && num%7 == 0 {
 		return "PlingPlong"
-	} else if num%5 ==0 && num%7 ==0 {
+	} else if num%5 == 0 && num%7 == 0 {
 		return "PlangPlong"
 	} else if num%3 == 0 {
 		return "Pling"
