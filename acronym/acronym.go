@@ -1,17 +1,25 @@
 package acronym
 
 import (
-	"fmt"
 	"strings"
 )
 
+// Abbreviate return string Acronym
 func Abbreviate(s string) string {
-	// Split the string into a list
-	list := strings.SplitAfter(s, " ")
-	fmt.Println(list)
+	// Clean the string and split into a list
+	r := strings.NewReplacer("-", " ", "_", "")
+	s = r.Replace(s)
+	stringReplaced := strings.Replace(s, "  ", "", -1)
+	list := strings.SplitAfter(stringReplaced, " ")
 
 	// Iterate over each item and grab the first letter
+	newList := []string{}
+	for _, word := range list {
+		x := strings.ToUpper(word)
+		newList = append(newList, string(x[0]))
+	}
 
-	// Push the first letter into a list -> string
-	return ""
+	// Join list and return string
+	result := strings.Join(newList, "")
+	return result
 }
