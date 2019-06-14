@@ -5,29 +5,43 @@ import (
 	"strings"
 )
 
-// Score computes the scrabble score for the word given.ß
+// Score computes the scrabble score for the word given.
 func Score(word string) int {
 	total := 0
 	w := strings.ToUpper(word)
 
+	scores :=  map[string]int{
+		"A": 1,
+		"E": 1,
+		"I": 1,
+		"O": 1,
+		"U": 1,
+		"L": 1,
+		"N": 1,
+		"R": 1,
+		"S": 1,
+		"T": 1,
+		"D": 2,
+		"G": 2,
+		"B": 3,
+		"C": 3,
+		"M": 3,
+		"P": 3,
+		"F": 4,
+		"H": 4,
+		"V": 4,
+		"W": 4,
+		"Y": 4,
+		"K": 5,
+		"J": 8,
+		"X": 8,
+		"Q": 10,
+		"Z": 10,
+	}
+
 	for _, letter := range w {
 		l := string(letter)
-		switch {
-		case strings.ContainsAny(l, "A E I O U L N R S T"):
-			total++
-		case strings.ContainsAny(l, "D G"):
-			total += 2
-		case strings.ContainsAny(l, "B C M P"):
-			total += 3
-		case strings.ContainsAny(l, "F H V W Y"):
-			total += 4
-		case strings.ContainsAny(l, "K"):
-			total += 5
-		case strings.ContainsAny(l, "J X"):
-			total += 8
-		case strings.ContainsAny(l, "Q Z"):
-			total += 10
-		}
+		total += scores[l]
 	}
 
 	return total
