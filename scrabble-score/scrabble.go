@@ -2,48 +2,28 @@
 package scrabble
 
 import (
-	"strings"
+	"unicode"
 )
 
-var scores = map[string]int{}
+var scores = map[rune]int{
+	'A': 1, 'E': 1, 'I': 1, 'O': 1, 'U': 1, 'L': 1, 'N': 1, 'R': 1, 'S': 1, 'T': 1,
+	'D': 2, 'G': 2, 'B': 3, 'C': 3, 'M': 3, 'P': 3,
+	'F': 4, 'H': 4, 'V': 4, 'W': 4, 'Y': 4, 'K': 5,
+	'J': 8, 'X': 8, 'Q': 10, 'Z': 10,
+}
 
 func init() {
-	scores["A"] = 1
-	scores["E"] = 1
-	scores["I"] = 1
-	scores["O"] = 1
-	scores["U"] = 1
-	scores["L"] = 1
-	scores["N"] = 1
-	scores["R"] = 1
-	scores["S"] = 1
-	scores["T"] = 1
-	scores["D"] = 2
-	scores["G"] = 2
-	scores["B"] = 3
-	scores["C"] = 3
-	scores["M"] = 3
-	scores["P"] = 3
-	scores["F"] = 4
-	scores["H"] = 4
-	scores["V"] = 4
-	scores["W"] = 4
-	scores["Y"] = 4
-	scores["K"] = 5
-	scores["J"] = 8
-	scores["X"] = 8
-	scores["Q"] = 10
-	scores["Z"] = 10
+ for k, v := range scores {
+		scores[unicode.ToLower(k)] = v
+	}
 }
 
 // Score computes the scrabble score for the word given.
 func Score(word string) int {
 	total := 0
-	w := strings.ToUpper(word)
 
-	for _, letter := range w {
-		l := string(letter)
-		total += scores[l]
+	for _, letter := range word {
+		total += scores[letter]
 	}
 
 	return total
