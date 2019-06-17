@@ -1,3 +1,4 @@
+// Package acronym abbreaviates a give string
 package acronym
 
 import (
